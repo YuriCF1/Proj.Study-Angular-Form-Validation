@@ -18,7 +18,12 @@
         required
         minlength="2"
       />
-      <div *ngIf="(f.controls['nome']?.invalid && f.controls['nome']?.touched) || f.controls['nome']">
+      <div
+        *ngIf="
+          (f.controls['nome']?.invalid && f.controls['nome']?.touched) ||
+          f.controls['nome']?.dirty
+        "
+      >
         <span
           class="erro__texto"
           *ngIf="f.controls['nome']?.errors?.['required']"
@@ -39,6 +44,7 @@
           id="nascimento"
           type="date"
           class="campo__escrita"
+          ngModel
         />
       </div>
       <div class="formulario__campo">
@@ -49,14 +55,43 @@
           type="tel"
           placeholder="(XX) XXXXX-XXXX"
           class="campo__escrita"
+          ngModel
         />
       </div>
     </div>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="email">E-mail</label>
-      <input name="email" id="email" type="email" class="campo__escrita" />
+      <!-- email = diretiva validadora do Angular -->
+      <!-- pattern = mais preciso que o email -->
+      <input
+        name="email"
+        id="email"
+        type="email"
+        class="campo__escrita"
+        ngModel
+        required
+        pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+      />
     </div>
-
+    <div
+      *ngIf="
+        (f.controls['email']?.invalid && f.controls['email']?.touched) ||
+        f.controls['email'].dirty
+      "
+    >
+      <span
+        class="erro__texto"
+        *ngIf="f.controls['email']?.errors?.['required']"
+        >O campo de email deve ser preenchido</span
+      >
+      <!-- Maneira de fazer o @ no Angular -->
+      <!-- <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['email']">
+        O campo de email deve ser válido. Ex: nome&#64;domínio.com
+      </span> -->
+      <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['pattern']">
+        O campo de email deve ser válido. Ex: nome&#64;domínio.com
+      </span>
+    </div>
     <h3 class="principal__subtitulo">Endereço</h3>
 
     <div class="formulario__campo">
