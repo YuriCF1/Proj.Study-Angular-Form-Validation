@@ -56,7 +56,27 @@
           placeholder="(XX) XXXXX-XXXX"
           class="campo__escrita"
           ngModel
+          required
+          pattern="(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})"
         />
+        <div
+          *ngIf="
+            (f.controls['telefone']?.invalid &&
+              f.controls['telefone']?.touched) ||
+            f.controls['telefone']?.dirty
+          "
+        >
+          <span
+            class="erro__texto"
+            *ngIf="f.controls['telefone']?.errors?.['required']"
+            >O campo de telefone deve ser preenchido</span
+          >
+          <span
+            class="erro__texto"
+            *ngIf="f.controls['telefone']?.errors?.['pattern']"
+            >Digite um telefone válido</span
+          >
+        </div>
       </div>
     </div>
     <div class="formulario__campo">
@@ -88,7 +108,10 @@
       <!-- <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['email']">
         O campo de email deve ser válido. Ex: nome&#64;domínio.com
       </span> -->
-      <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['pattern']">
+      <span
+        class="erro__texto"
+        *ngIf="f.controls['email']?.errors?.['pattern']"
+      >
         O campo de email deve ser válido. Ex: nome&#64;domínio.com
       </span>
     </div>
