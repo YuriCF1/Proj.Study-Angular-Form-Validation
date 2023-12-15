@@ -143,7 +143,7 @@
         pattern="^(\d{5})(-?\d{3})$"
         minlength="8"
         maxlength="9"
-        (blur)="consultaCep($event)"
+        (blur)="consultaCep($event, f)"
       />
       <div *ngIf="(cep?.invalid && cep?.touched) || cep?.dirty">
         <app-error-message
@@ -183,22 +183,46 @@
       </div>
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="complemento">Complemento</label>
-        <input name="complemento" id="complemento" class="campo__escrita" />
+        <input
+          name="complemento"
+          id="complemento"
+          class="campo__escrita"
+          ngModel
+          #complemento="ngModel"
+        />
       </div>
     </div>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="bairro">Bairro</label>
-      <input name="bairro" id="bairro" class="campo__escrita" />
+      <input
+        name="bairro"
+        id="bairro"
+        class="campo__escrita"
+        ngModel
+        #bairro="ngModel"
+      />
     </div>
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="cidade">Cidade</label>
-        <input name="cidade" id="cidade" class="campo__escrita" />
+        <input
+          name="cidade"
+          id="cidade"
+          class="campo__escrita"
+          ngModel
+          #cidade="ngModel"
+        />
       </div>
 
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="estado">UF</label>
-        <select id="estado" name="estado" class="campo__escrita">
+        <select
+          id="estado"
+          name="estado"
+          class="campo__escrita"
+          ngModel
+          #estado="ngModel"
+        >
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
           <option value="AP">Amapá</option>
