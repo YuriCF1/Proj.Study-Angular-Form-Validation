@@ -132,10 +132,31 @@
     <h3 class="principal__subtitulo">Endereço</h3>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="cep">CEP</label>
-      <input name="cep" id="cep" class="campo__escrita" />
-      <div id="erro"></div>
+      <input
+        name="cep"
+        id="cep"
+        class="campo__escrita"
+        ngModel
+        required
+        #cep="ngModel"
+        pattern="^(\d{5})(-?\d{3})$"
+        minlength="8"
+        maxlength="9"
+      />
+      <div *ngIf="(cep?.invalid && cep?.touched) || cep?.dirty">
+        <app-error-message
+          *ngIf="cep?.errors?.['required']"
+          message="O campo de CEP é obrigatório"
+        >
+        </app-error-message>
+        <app-error-message
+          *ngIf="cep?.errors?.['pattern']"
+          message="O campo de CEP deve seguir o padrão. Ex: 00000-000"
+        >
+        </app-error-message>
+      </div>
+      <!-- <div id="erro"></div> -->
     </div>
-
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="endereco">Endereço</label>
       <input name="endereco" id="endereco" class="campo__escrita" />
