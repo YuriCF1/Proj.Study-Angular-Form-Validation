@@ -17,23 +17,27 @@
         ngModel
         required
         minlength="2"
+        #nome="ngModel"
       />
-      <div
+      <!-- Fazendo referencia ao nome sem a variável #nome="ngModel" -->
+      <!-- <div
         *ngIf="
           (f.controls['nome']?.invalid && f.controls['nome']?.touched) ||
           f.controls['nome']?.dirty
         "
-      >
-        <span
+      > -->
+      <!-- Fazendo referencia ao nome COM a variável #nome="ngModel" -->
+      <div *ngIf="(nome?.invalid && nome?.touched) || nome?.dirty">
+        <app-error-message
           class="erro__texto"
           *ngIf="f.controls['nome']?.errors?.['required']"
-          >O campo de Nome deve ser preenchido</span
-        >
-        <span
+          message="O campo de Nome deve ser preenchido"
+        ></app-error-message>
+        <app-error-message
           class="erro__texto"
           *ngIf="f.controls['nome']?.errors?.['minlength']"
-          >O nome deve ter pelo menos 2 caracteres</span
-        >
+          message="O nome deve ter pelo menos 2 caracteres"
+        ></app-error-message>
       </div>
     </div>
     <div class="formulario__dupla">
@@ -45,7 +49,26 @@
           type="date"
           class="campo__escrita"
           ngModel
+          required
+          #nascimento="ngModel"
+          underAgeFilter
         />
+        <div
+          *ngIf="
+            (nascimento?.invalid && nascimento?.touched) || nascimento?.dirty
+          "
+        >
+          <app-error-message
+            class="erro__texto"
+            *ngIf="nascimento?.errors?.['required']"
+            message="A data de nascimentoé obritária"
+          ></app-error-message>
+          <app-error-message
+            class="erro__texto"
+            *ngIf="(nascimento?.errors?.['underAgeFilter'] && nascimento?.dirty)"
+            message="Menores de idade não são permitidos"
+          ></app-error-message>
+        </div>
       </div>
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="telefone">Contato</label>
@@ -58,24 +81,21 @@
           ngModel
           required
           pattern="(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})"
+          #telefone="ngModel"
         />
         <div
-          *ngIf="
-            (f.controls['telefone']?.invalid &&
-              f.controls['telefone']?.touched) ||
-            f.controls['telefone']?.dirty
-          "
+          *ngIf="(telefone?.invalid && telefone?.touched) || telefone?.dirty"
         >
-          <span
+          <app-error-message
             class="erro__texto"
-            *ngIf="f.controls['telefone']?.errors?.['required']"
-            >O campo de telefone deve ser preenchido</span
-          >
-          <span
+            *ngIf="telefone?.errors?.['required']"
+            message="O telefone é obritário"
+          ></app-error-message>
+          <app-error-message
             class="erro__texto"
-            *ngIf="f.controls['telefone']?.errors?.['pattern']"
-            >Digite um telefone válido</span
-          >
+            *ngIf="telefone?.errors?.['pattern']"
+            message="Digite um telefone válido"
+          ></app-error-message>
         </div>
       </div>
     </div>
@@ -91,32 +111,26 @@
         ngModel
         required
         pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+        #email="ngModel"
       />
     </div>
-    <div
-      *ngIf="
-        (f.controls['email']?.invalid && f.controls['email']?.touched) ||
-        f.controls['email'].dirty
-      "
-    >
-      <span
-        class="erro__texto"
-        *ngIf="f.controls['email']?.errors?.['required']"
-        >O campo de email deve ser preenchido</span
-      >
+    <div *ngIf="(email?.invalid && email?.touched) || email.dirty">
       <!-- Maneira de fazer o @ no Angular -->
       <!-- <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['email']">
         O campo de email deve ser válido. Ex: nome&#64;domínio.com
       </span> -->
-      <span
+      <app-error-message
         class="erro__texto"
-        *ngIf="f.controls['email']?.errors?.['pattern']"
-      >
-        O campo de email deve ser válido. Ex: nome&#64;domínio.com
-      </span>
+        *ngIf="email?.errors?.['required']"
+        message="O campo de email é obrigatório"
+      ></app-error-message>
+      <app-error-message
+        class="erro__texto"
+        *ngIf="email?.errors?.['pattern']"
+        message="O campo de email deve ser válido. Ex: nome@domínio.com"
+      ></app-error-message>
     </div>
     <h3 class="principal__subtitulo">Endereço</h3>
-
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="cep">CEP</label>
       <input name="cep" id="cep" class="campo__escrita" />
