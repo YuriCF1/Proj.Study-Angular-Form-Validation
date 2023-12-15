@@ -10,9 +10,10 @@ import { SucessoCadastroComponent } from './sucesso-cadastro/sucesso-cadastro.co
 import { FormsModule } from '@angular/forms';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { UnderAngeFilterDirective } from './directives/under-ange-filter.directive';
+import { MudandoCorDirective } from './directives/changingColor/mudando-cor.directive';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent, ErrorMessageComponent, UnderAngeFilterDirective],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent, ErrorMessageComponent, UnderAngeFilterDirective, MudandoCorDirective],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
