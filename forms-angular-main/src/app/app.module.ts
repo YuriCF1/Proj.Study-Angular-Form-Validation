@@ -12,9 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { UnderAngeFilterDirective } from './directives/under-ange-filter.directive';
 import { MudandoCorDirective } from './directives/changingColor/mudando-cor.directive';
+import { ValidandoCEPDirective } from './directives/validatingZipCode/validando-cep.directive';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent, ErrorMessageComponent, UnderAngeFilterDirective, MudandoCorDirective],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent, ErrorMessageComponent, UnderAngeFilterDirective, MudandoCorDirective, ValidandoCEPDirective],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
