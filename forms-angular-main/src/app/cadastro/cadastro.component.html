@@ -144,6 +144,7 @@
         minlength="8"
         maxlength="9"
         (blur)="consultaCep($event, f)"
+        validadorCep
       />
       <div *ngIf="(cep?.invalid && cep?.touched) || cep?.dirty">
         <app-error-message
@@ -154,6 +155,11 @@
         <app-error-message
           *ngIf="cep?.errors?.['pattern']"
           message="O campo de CEP deve seguir o padrão. Ex: 00000-000"
+        >
+        </app-error-message>
+        <app-error-message
+          *ngIf="cep?.errors?.['validadorCep']"
+          message="O CEP informado não existe"
         >
         </app-error-message>
       </div>
@@ -167,6 +173,7 @@
         class="campo__escrita"
         ngModel
         #endereco="ngModel"
+        disabled
       />
     </div>
     <div *ngIf="(endereco?.invalid && endereco?.touched) || endereco?.dirty">
