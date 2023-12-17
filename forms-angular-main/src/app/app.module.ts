@@ -14,9 +14,11 @@ import { UnderAngeFilterDirective } from './directives/under-ange-filter.directi
 import { MudandoCorDirective } from './directives/changingColor/mudando-cor.directive';
 import { ValidandoCEPDirective } from './directives/validatingZipCode/validando-cep.directive';
 
+import { NgxMaskModule } from 'ngx-mask'
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent, ErrorMessageComponent, UnderAngeFilterDirective, MudandoCorDirective, ValidandoCEPDirective],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgxMaskModule.forRoot()],
   providers: [],
   bootstrap: [AppComponent],
 })
