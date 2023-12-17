@@ -25,12 +25,12 @@ export class CadastroComponent implements OnInit {
   }
 
   register(form: NgForm) {
-    // if (form.valid) {
-    //   this.router.navigate(['./sucesso'])
-    // } else {
-    //   alert("Form invalido")
-    // }
-    // console.log(form);
+    if (form.valid) {
+      this.router.navigate(['./sucesso'])
+    } else {
+      alert("Form invalido")
+    }
+    console.log(form);
     console.log(form.controls);
   }
 
